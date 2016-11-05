@@ -48,7 +48,7 @@ export default class RulesContainer {
   /**
    * Get a rule.
    *
-   * @param {String} nameOrSelector can be selector or name if `named` option is true.
+   * @param {String} nameOrSelector
    * @return {Rule}
    * @api public
    */
@@ -152,8 +152,6 @@ export default class RulesContainer {
     // some conditional rule.
     if (!options.className) options.className = this.classes[name]
 
-    // Scope options overwrite instance options.
-    if (options.named == null) options.named = this.options.named
     const rule = createRule(name, style, options)
     this.register(rule)
 

@@ -151,34 +151,6 @@ describe('Functional: sheet', () => {
     })
   })
 
-  describe('.addRule() to an unnamed sheet', () => {
-    let sheet
-    let rule
-    let style
-
-    beforeEach(() => {
-      sheet = jss.createStyleSheet(null, {named: false}).attach()
-      rule = sheet.addRule('.a', {float: 'left'})
-      style = getStyle()
-    })
-
-    it('should render only 1 rule', () => {
-      expect(getRules(style).length).to.be(1)
-    })
-
-    it('should render correct CSS', () => {
-      expect(getCss(style)).to.be(removeWhitespace(sheet.toString()))
-    })
-
-    it('should register the rule', () => {
-      expect(sheet.getRule('.a')).to.be(rule)
-    })
-
-    it('should link sheet in rules options', () => {
-      expect(sheet.getRule('.a').options.sheet).to.be(sheet)
-    })
-  })
-
   describe('.addRule() to a named sheet', () => {
     let sheet
     let rule

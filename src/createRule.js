@@ -26,28 +26,25 @@ const atRuleNameRegExp = /^@[^ ]+/
  * Create rule factory.
  *
  * Options:
- *   - `named` pass `false` if selector argument is defined by user
  *   - `className` pass class name if you to define it manually
  *
- * @param {Object} [selector] if you don't pass selector - it will be generated
+ * @param {Object} [name] if you don't pass selector - it will be generated
  * @param {Object} [style] declarations block
  * @param {Object} [options] rule options
  * @return {Object} rule
  * @api private
  */
-export default function createRule(selector, style = {}, options = {}) {
+export default function createRule(name, style = {}, options = {}) {
   let RuleClass = Rule
 
   // Is an at-rule.
-  if (selector && selector[0] === '@') {
-    const name = atRuleNameRegExp.exec(selector)[0]
-    const AtRule = atRuleClassMap[name]
+  if (name && name[0] === '@') {
+    const atRuleName = atRuleNameRegExp.exec(name)[0]
+    const AtRule = atRuleClassMap[atRuleName]
 
     if (AtRule) RuleClass = AtRule
     else warning(false, '[JSS] Unknown at-rule %s', name)
   }
 
-  if (options.named == null) options.named = true
-
-  return new RuleClass(selector, style, options)
+  return new RuleClass(name, style, options)
 }

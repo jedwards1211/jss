@@ -2,14 +2,14 @@
 
 1. [Access the jss namespace.](#access-the-jss-namespace)
 1. [Create an own instance of JSS.](#create-an-own-instance-of-jss)
-1. [Create style sheet with namespaces enabled.](#create-style-sheet-with-namespaces-enabled)
-1. [Create regular style sheet with global selectors.](#create-regular-style-sheet-with-global-selectors)
+1. [Create style sheet.](#create-style-sheet)
+1. [Create regular Style Sheet with global selectors.](#create-regular-style-sheet-with-global-selectors)
 1. [Attach style sheet.](#attach-style-sheet)
 1. [Detach style sheet.](#detach-style-sheet)
 1. [Attach style sheets in a specific order.](#attach-style-sheets-in-a-specific-order)
 1. [Add a rule to an existing style sheet.](#add-a-rule-to-an-existing-style-sheet)
 1. [Delete a rule from an existing style sheet.](#delete-a-rule-from-an-existing-style-sheet)
-1. [Add a rule dynamically with a generated class name.](#add-a-rule-dynamically-with-a-generated-class-name)
+1. [Add a rule dynamically.](#add-a-rule-dynamically)
 1. [Add a rule with global class name.](#add-a-rule-with-global-class-name)
 1. [Get a rule.](#get-a-rule)
 1. [Add multiple rules.](#add-multiple-rules)
@@ -59,9 +59,7 @@ import jss from 'jss'
 jss.setup(preset())
 ```
 
-### Create style sheet with namespaces enabled.
-
-Create a style sheet with [namespaced](http://cssinjs.github.io/examples/namespace/index.html) rules.
+### Create Style Sheet
 
 `jss.createStyleSheet([rules], [options])`
 
@@ -69,7 +67,6 @@ Options:
 
 - `media` media query - attribute of style element.
 - `meta` meta information about this style - attribute of style element, for e.g. you could pass component name for easier debugging.
-- `named` true by default - keys are names, selectors will be generated, if false - keys are global selectors.
 - `link` link jss `Rule` instances with DOM `CSSRule` instances so that styles, can be modified dynamically, false by default because it has some performance cost.
 - `element` style element, will create one by default
 - `index` 0 by default - determines DOM rendering order, higher number = higher specificity (inserted after)
@@ -96,20 +93,24 @@ console.log(sheet.classes.button) // .button--jss-0-0
 </style>
 ```
 
-### Create a style sheet with global selectors.
+### Create a Style Sheet with global selectors.
+
+You need to have [jss-global](https://github.com/cssinjs/jss-global) plugin installed.
 
 ```javascript
 const sheet = jss.createStyleSheet({
-  '.something': {
-    width: 100,
-    height: 100
+  global: {
+    body: {
+      width: 100,
+      height: 100
+    }
   }
-}, {named: false}).attach()
+}).attach()
 ```
 
 ```css
 <style>
-  .something {
+  body {
     width: 100px;
     height: 100px;
   }
@@ -164,12 +165,11 @@ const sheet2 = jss.createStyleSheet({}, {index: 1, meta: 'sheet-2'}).attach()
 
 #### Options.
 
-- `named` if true, selector will be generated.
 - `index` index where the rule should be added, by default, rules are pushed at the end.
 - `className` add a rule with a predefined class name.
 
 
-#### Add a rule dynamically with a generated class name.
+#### Add a rule dynamically.
 
 ```javascript
 const rule = sheet.addRule({
@@ -177,15 +177,6 @@ const rule = sheet.addRule({
   background: 'blue'
 })
 document.body.innerHTML = '<button class="' + rule.className + '">Button</button>'
-```
-
-#### Add a rule with global class name.
-
-```javascript
-const rule = sheet.addRule('.my-button', {
-  padding: 20,
-  background: 'blue'
-}, {named: false})
 ```
 
 ### Delete a rule from an existing style sheet.
@@ -203,11 +194,8 @@ Returns `true` if rule has been removed from the DOM.
 Access a rule within sheet by selector or name.
 
 ```javascript
-// Using name, if named rule was added.
+// Using name.
 const rule = sheet.getRule('myButton')
-
-// Using selector
-const rule = sheet.getRule('.my-button')
 ```
 
 ### Add multiple rules.
