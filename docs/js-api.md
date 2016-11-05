@@ -2,18 +2,18 @@
 
 1. [Access the jss namespace.](#access-the-jss-namespace)
 1. [Create an own instance of JSS.](#create-an-own-instance-of-jss)
-1. [Create style sheet.](#create-style-sheet)
+1. [Create Style Sheet.](#create-style-sheet)
 1. [Create regular Style Sheet with global selectors.](#create-regular-style-sheet-with-global-selectors)
-1. [Attach style sheet.](#attach-style-sheet)
-1. [Detach style sheet.](#detach-style-sheet)
-1. [Attach style sheets in a specific order.](#attach-style-sheets-in-a-specific-order)
-1. [Add a rule to an existing style sheet.](#add-a-rule-to-an-existing-style-sheet)
-1. [Delete a rule from an existing style sheet.](#delete-a-rule-from-an-existing-style-sheet)
+1. [Attach Style Sheet.](#attach-style-sheet)
+1. [Detach Style Sheet.](#detach-style-sheet)
+1. [Attach Style Sheets in a specific order.](#attach-style-sheets-in-a-specific-order)
+1. [Add a rule to an existing Style Sheet.](#add-a-rule-to-an-existing-style-sheet)
+1. [Delete a rule from an existing Style Sheet.](#delete-a-rule-from-an-existing-style-sheet)
 1. [Add a rule dynamically.](#add-a-rule-dynamically)
 1. [Add a rule with global class name.](#add-a-rule-with-global-class-name)
 1. [Get a rule.](#get-a-rule)
 1. [Add multiple rules.](#add-multiple-rules)
-1. [Create a rule without a style sheet.](#create-a-rule-without-a-style-sheet)
+1. [Create a rule without a Style Sheet.](#create-a-rule-without-a-style-sheet)
 1. [Inline Style](#apply-a-rule-to-an-element-inline)
 1. [Set or get a rule property dynamically.](#set-or-get-a-rule-property-dynamically)
 1. [Convert rule to a JSON.](#convert-rule-to-a-json)
@@ -73,7 +73,7 @@ Options:
 
 
 ```javascript
-// Namespaced style sheet with generated selectors.
+// Namespaced Style Sheet with generated selectors.
 const sheet = jss.createStyleSheet({
   button: {
     width: 100,
@@ -117,35 +117,35 @@ const sheet = jss.createStyleSheet({
 </style>
 ```
 
-### Remove a style sheet.
+### Remove a Style Sheet.
 
 `jss.removeStyleSheet(sheet)`
 
-Detach the style sheet and remove it from the registry.
+Detach the Style Sheet and remove it from the registry.
 
-### A style sheets registry.
+### A Style Sheets registry.
 
 `jss.sheets`
 
 ```javascript
-jss.sheets.registry // an array with all style sheets
+jss.sheets.registry // an array with all Style Sheets
 
-jss.sheets.toString() // Returns CSS of all style sheets together. Useful for server-side rendering.
+jss.sheets.toString() // Returns CSS of all Style Sheets together. Useful for server-side rendering.
 ```
 
-### Attach style sheet.
+### Attach Style Sheet.
 
 `sheet.attach()`
 
-Insert style sheet into the render tree. You need to call it in order to make your style sheet visible for the layout.
+Insert Style Sheet into the render tree. You need to call it in order to make your Style Sheet visible for the layout.
 
-### Detach style sheet.
+### Detach Style Sheet.
 
 `sheet.detach()`
 
-Detaching unused style sheets will speedup every DOM node insertion and manipulation as the browser will have to do less lookups for css rules potentially to be applied to the element.
+Detaching unused Style Sheets will speedup every DOM node insertion and manipulation as the browser will have to do less lookups for css rules potentially to be applied to the element.
 
-### Attach style sheets in a specific order.
+### Attach Style Sheets in a specific order.
 
 Sheet 1 has a higher index (priority), and as such will come **after** sheet 2 in the resulting DOM.
 
@@ -159,7 +159,7 @@ const sheet2 = jss.createStyleSheet({}, {index: 1, meta: 'sheet-2'}).attach()
 <style type="text/css" data-meta="sheet-1"></style>
 ```
 
-### Add a rule to an existing style sheet.
+### Add a rule to an existing Style Sheet.
 
 `sheet.addRule([selector], rule, [options])`
 
@@ -179,9 +179,9 @@ const rule = sheet.addRule({
 document.body.innerHTML = '<button class="' + rule.className + '">Button</button>'
 ```
 
-### Delete a rule from an existing style sheet.
+### Delete a rule from an existing Style Sheet.
 
-To remove a rule from the DOM, style sheet option `link: true` should be used.
+To remove a rule from the DOM, Style Sheet option `link: true` should be used.
 Returns `true` if rule has been removed from the DOM.
 
 `sheet.deleteRule(name)`
@@ -215,7 +215,7 @@ sheet.addRules({
 })
 ```
 
-### Create a rule without a style sheet.
+### Create a rule without a Style Sheet.
 
 `jss.createRule([selector], rule, [options])`
 
