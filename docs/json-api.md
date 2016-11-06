@@ -297,26 +297,6 @@ export default {
 
 Global selectors can be used when [jss-global](https://github.com/cssinjs/jss-global) plugin is installed.
 
-#### JS
-
-```javascript
-export default {
-  global: {
-    div: {
-      boxSizing: 'border-box'
-    }
-  }
-}
-```
-
-#### CSS
-
-```css
-div {
-  box-sizing: border-box;
-}
-```
-
 ### Pseudo and Nested Selectors.
 
 Are supported through the [jss-nested](https://github.com/cssinjs/jss-nested) plugin.

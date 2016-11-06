@@ -96,26 +96,6 @@ console.log(sheet.classes.button) // .button--jss-0-0
 
 You need to have [jss-global](https://github.com/cssinjs/jss-global) plugin installed.
 
-```javascript
-const sheet = jss.createStyleSheet({
-  global: {
-    body: {
-      width: 100,
-      height: 100
-    }
-  }
-}).attach()
-```
-
-```css
-<style>
-  body {
-    width: 100px;
-    height: 100px;
-  }
-</style>
-```
-
 ### Remove a Style Sheet.
 
 `jss.removeStyleSheet(sheet)`
