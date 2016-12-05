@@ -43,6 +43,10 @@ export default class SheetsRegistry {
     this.registry.splice(index, 1)
   }
 
+  clear() {
+    this.registry = []
+  }
+
   /**
    * Returns CSS string with all Style Sheets.
    *

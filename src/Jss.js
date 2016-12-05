@@ -5,6 +5,8 @@ import createRule from './createRule'
 import findRenderer from './findRenderer'
 import {generateClassName} from './utils'
 
+
+const sheets = new SheetsRegistry()
 /**
  * Main Jss class.
  *
@@ -17,10 +19,10 @@ export default class Jss {
    * @see .setup()
    */
   constructor(options) {
-    this.sheets = new SheetsRegistry()
     this.plugins = new PluginsRegistry()
     this.version = __VERSION__
     this.setup(options)
+    this.sheets = sheets
   }
 
   /**

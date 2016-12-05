@@ -51,3 +51,8 @@ export function reset(jssInstance = jss) {
 jss.setup({
   generateClassName: (str, rule) => (rule.name ? `${rule.name}-id` : 'id')
 })
+
+beforeEach(() => {
+  jss.sheets.clear()
+})
+
